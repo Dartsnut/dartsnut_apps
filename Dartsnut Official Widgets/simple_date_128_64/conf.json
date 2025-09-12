@@ -1,0 +1,11 @@
+{
+    "id": "",
+    "type": "widget",
+    "name": "Simple Date Widget",
+    "author": "PixelBoard Team",
+    "version": "1.0.0",
+    "description": "A simple date widget",
+    "size": [128,64],
+    "fields": [],
+    "preview": []
+}

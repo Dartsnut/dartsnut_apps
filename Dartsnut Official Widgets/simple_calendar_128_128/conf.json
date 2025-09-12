@@ -1,0 +1,11 @@
+{
+    "id": "",
+    "type": "widget",
+    "name": "Simple Calendar",
+    "author": "PixelBoard Team",
+    "version": "1.0.0",
+    "description": "A simple calendar widget",
+    "size": [128,128],
+    "fields": [],
+    "preview": []
+}

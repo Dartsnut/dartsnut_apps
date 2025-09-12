@@ -89,6 +89,10 @@ For detailed usage and examples of supported parameter types, please refer to th
 
 Consult the `Parameters Field` folder for a full list of supported types and configuration options.
 
+## Official Widget Example
+
+Developers can find our official widget example in the `Dartsnut Official Widgets` folder of this repository. This example demonstrates the recommended app structure, configuration, and usage of widget parameters. Use it as a reference when building your own apps.
+
 ## Contributing
 
 Contributions are welcome! Please submit pull requests or open issues for suggestions and improvements.

@@ -1,0 +1,11 @@
+{
+    "id": "",
+    "type": "widget",
+    "name": "Simple Local Digital Clock",
+    "author": "PixelBoard Team",
+    "version": "1.0.0",
+    "description": "A simple local digital clock widget",
+    "size": [128,64],
+    "fields": [],
+    "preview": []
+}
