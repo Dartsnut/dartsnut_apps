@@ -60,7 +60,8 @@ Each field in the `fields` array should include the following basic properties:
 ## Parameter Types
 
 ### 1. `text`
-A text parameter allows users to input free-form text. It is commonly used for names, labels, or any string value. Example configuration:
+A text parameter allows users to input free-form text. It is commonly used for names, labels, or any string value. 
+Example configuration:
 
 ```json
 {
@@ -73,7 +74,8 @@ A text parameter allows users to input free-form text. It is commonly used for n
 ```
 
 ### 2. `color`
-A color parameter enables users to select a color using a color picker in the Dartsnut app. The selected value is returned as a string in the `"#RRGGBB"` format. Example configuration:
+A color parameter enables users to select a color using a color picker in the Dartsnut app. The selected value is returned as a string in the `"#RRGGBB"` format. 
+Example configuration:
 
 ```json
 {
@@ -86,7 +88,8 @@ A color parameter enables users to select a color using a color picker in the Da
 ```
 
 ### 3. `dropdown`
-A dropdown parameter lets users select one option from a predefined list. Each option includes a display name (shown in the Dartsnut app) and a value (passed to the app). The `default` property should be set to one of the option values, not the display name. Example configuration:
+A dropdown parameter lets users select one option from a predefined list. Each option includes a display name (shown in the Dartsnut app) and a value (passed to the app). The `default` property should be set to one of the option values, not the display name. 
+Example configuration:
 
 ```json
 {
@@ -109,7 +112,8 @@ A dropdown parameter lets users select one option from a predefined list. Each o
 ```
 
 ### 4. `toggle`
-A toggle parameter provides a simple on/off switch for users. The value returned is typically a boolean (`true` or `false`). Example configuration:
+A toggle parameter provides a simple on/off switch for users. The value returned is typically a boolean (`true` or `false`). 
+Example configuration:
 
 ```json
 {
@@ -122,7 +126,8 @@ A toggle parameter provides a simple on/off switch for users. The value returned
 ```
 
 ### 5. `number`
-A number parameter allows users to input numeric values. You can specify constraints such as minimum, maximum. Example configuration:
+A number parameter allows users to input numeric values. You can specify constraints such as minimum, maximum. 
+Example configuration:
 
 ```json
 {
@@ -137,7 +142,8 @@ A number parameter allows users to input numeric values. You can specify constra
 ```
 
 ### 6. `slider`
-A slider parameter allows users to select a numeric value within a specified range using a slider control. You can define the minimum, maximum, and step values. Example configuration:
+A slider parameter allows users to select a numeric value within a specified range using a slider control. You can define the minimum, maximum, and step values. 
+Example configuration:
 
 ```json
 {
@@ -153,7 +159,8 @@ A slider parameter allows users to select a numeric value within a specified ran
 ```
 
 ### 7. `checkbox`
-A checkbox parameter allows users to select multiple options from a predefined list. The value returned is an array of selected option values. Example configuration:
+A checkbox parameter allows users to select multiple options from a predefined list. The value returned is an array of selected option values. 
+Example configuration:
 
 ```json
 {
@@ -197,9 +204,10 @@ Example configuration:
         }
 ```
 
-## Location Parameter
+### 9. `location`
 
-A location parameter allows users to input a location name, which uses autocomplete to help users select a proper location from a list. The value returned is an object containing the location's name, latitude, longitude, and timezone. Example configuration:
+A `location` parameter allows users to input a location name, which uses autocomplete to help users select a proper location from a list. The value returned is an object containing the location's name, latitude, longitude, and timezone. Example configuration:
+Example configuration:
 
 ```json
 {
@@ -213,6 +221,22 @@ A location parameter allows users to input a location name, which uses autocompl
         "lng": 0.0,
         "timezone": ""
     }
+}
+```
+
+### 10. `images`
+
+An `image` parameter allows users to submit an images through the Dartsnut app interface. Developers can specify the required aspect ratio for the image using the `aspectio` property (e.g., `"aspectio": [16,9]`). The app will guide users to crop their images to match the specified aspect ratio before uploading. The value returned is a temporary file path referencing the uploaded image.
+Example configuration:
+
+```json
+{
+    "id": "cover_image",
+    "name": "Cover Image",
+    "type": "image",
+    "desc": "Upload a cover image (16:9 aspect ratio)",
+    "aspectio": "16:9",
+    "default": ""
 }
 ```
 
