@@ -224,7 +224,7 @@ Example configuration:
 }
 ```
 
-### 10. `images`
+### 10. `image`
 
 An `image` parameter allows users to submit an images through the Dartsnut app interface. Developers can specify the required aspect ratio for the image using the `aspectio` property (e.g., `"aspectio": [16,9]`). The app will guide users to crop their images to match the specified aspect ratio before uploading. The value returned is a temporary file path referencing the uploaded image.
 Example configuration:
