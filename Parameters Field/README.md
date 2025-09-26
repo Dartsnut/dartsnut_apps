@@ -73,6 +73,14 @@ Example configuration:
 }
 ```
 
+Example field parameter:
+
+```json
+{
+    "city": "Hongkong"
+}
+```
+
 ### 2. `color`
 A color parameter enables users to select a color using a color picker in the Dartsnut app. The selected value is returned as a string in the `"#RRGGBB"` format. 
 Example configuration:
@@ -84,6 +92,14 @@ Example configuration:
     "type": "color",
     "desc": "Choose the background color for the app",
     "default": "#FFFFFF"
+}
+```
+
+Example field parameter:
+
+```json
+{
+    "background_color": "#123456"
 }
 ```
 
@@ -111,6 +127,14 @@ Example configuration:
 }
 ```
 
+Example field parameter:
+
+```json
+{
+    "temperature_unit": "celsius"
+}
+```
+
 ### 4. `toggle`
 A toggle parameter provides a simple on/off switch for users. The value returned is typically a boolean (`true` or `false`). 
 Example configuration:
@@ -122,6 +146,14 @@ Example configuration:
     "type": "toggle",
     "desc": "Enable to display seconds on the clock",
     "default": false
+}
+```
+
+Example field parameter:
+
+```json
+{
+    "show_seconds": false
 }
 ```
 
@@ -141,6 +173,14 @@ Example configuration:
 }
 ```
 
+Example field parameter:
+
+```json
+{
+    "refresh_interval": 120
+}
+```
+
 ### 6. `slider`
 A slider parameter allows users to select a numeric value within a specified range using a slider control. You can define the minimum, maximum, and step values. 
 Example configuration:
@@ -155,6 +195,14 @@ Example configuration:
     "min": 0,
     "max": 100,
     "step": 1
+}
+```
+
+Example field parameter:
+
+```json
+{
+    "volume": 50
 }
 ```
 
@@ -186,25 +234,15 @@ Example configuration:
 }
 ```
 
-### 8. `files`
-
-A `files` parameter allows users to upload one or more files (such as images, documents, or configuration files) through the Dartsnut app interface. The `default` value is ignored for this parameter type. The value returned is a temporary file path referencing the uploaded file(s). You can use the `counts` property to specify the minimum and maximum number of files users can upload. For example, `"counts": [1, 10]` means users must upload at least 1 file and no more than 10 files. 
-> **Note:** Each uploaded file must not exceed 1MB in size.
-Example configuration:
+Example field parameter:
 
 ```json
 {
-    "id": "files",
-    "name": "files",
-    "type": "files",
-    "desc": "Upload files",
-    "accept": ["bmp","jpg","png"],
-    "counts": [1,10],
-    "default": []
-        }
+    "features": ["alarm", "timer"]
+}
 ```
 
-### 9. `location`
+### 8. `location`
 
 A `location` parameter allows users to input a location name, which uses autocomplete to help users select a proper location from a list. The value returned is an object containing the location's name, latitude, longitude, and timezone. Example configuration:
 Example configuration:
@@ -224,9 +262,22 @@ Example configuration:
 }
 ```
 
-### 10. `image`
+Example field parameter:
 
-An `image` parameter allows users to submit an images through the Dartsnut app interface. Developers can specify the required aspect ratio for the image using the `aspectio` property (e.g., `"aspectio": [16,9]`). The app will guide users to crop their images to match the specified aspect ratio before uploading. The value returned is a temporary file path referencing the uploaded image.
+```json
+{
+    "city": {
+        "name": "Hongkong",
+        "lat": 22.302711,
+        "lng": 114.177216,
+        "timezone": "Asia/Hong_Kong"
+    }
+}
+```
+
+### 9. `image`
+
+An `image` parameter allows users to submit an images through the Dartsnut app interface. Developers can specify the required aspect ratio for the image using the `aspectio` property (e.g., `"aspectio": [16,9]`). The app will guide users to crop their images to match the specified aspect ratio before uploading. The value returned is an object containing the temporary file path referencing the uploaded image and the crop box coordinate.
 Example configuration:
 
 ```json
@@ -237,6 +288,17 @@ Example configuration:
     "desc": "Upload a cover image (16:9 aspect ratio)",
     "aspectio": "16:9",
     "default": ""
+}
+```
+
+Example field parameter:
+
+```json
+{
+    "cover_image": {
+        "image": "temp_path_of_the_image",
+        "cropbox": [0,0,1920,1080]
+    }
 }
 ```
 
