@@ -1,0 +1,50 @@
+{
+    "id": "simple_youtube_info_128_128",
+    "type": "widget",
+    "name": "Simple YouTube Info",
+    "author": "Dartsnut Team",
+    "version": "1.0.0",
+    "description": "A simple YouTube info widget, user can set a youtube channel to show the channel information",
+    "size": [
+        128,
+        128
+    ],
+    "fields": [
+        {
+            "id": "youtube_channel_id",
+            "name": "YouTube Channel Id",
+            "type": "text",
+            "desc": "The YouTube channel ID, to find your channel ID: https://support.google.com/youtube/answer/3250431",
+            "default": ""
+        },
+        {
+            "id": "category",
+            "name": "Category",
+            "type": "dropdown",
+            "desc": "The category of the YouTube channel to be displayed",
+            "options": [
+                {
+                    "display": "Subscribers",
+                    "value": "subscribers"
+                },
+                {
+                    "display": "Views",
+                    "value": "views"
+                },
+                {
+                    "display": "Live Viewers",
+                    "value": "live_viewers"
+                }
+            ],
+            "default": "subscribers"
+        },
+        {
+            "id": "api_key",
+            "name": "Google Youtube API Key",
+            "type": "text",
+            "desc": "The API key to access the Google Youtube API, if you don't know what is this, just leave it blank",
+            "default": ""
+        }
+    ],
+    "preview": []
+}

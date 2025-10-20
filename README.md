@@ -57,6 +57,8 @@ For widget-type apps, the following Python modules are pre-installed:
 - requests
 - opencv-python
 - numpy
+- asyncio
+- aiohttp
 
 For game-type apps, you can also use:
 - pygame
