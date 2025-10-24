@@ -1,10 +1,10 @@
 {
-    "id": "",
+    "id": "simple_letter_128_160",
     "type": "widget",
     "name": "Simple Letter",
-    "author": "PixelBoard Team",
+    "author": "Dartsnut Team",
     "version": "1.0.0",
-    "description": "A simple letter widget, user",
+    "description": "A simple letter widget, user can input any text to display.",
     "size": [128,160],
     "fields": [
         {

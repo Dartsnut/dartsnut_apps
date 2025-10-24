@@ -5,81 +5,79 @@ from PIL import Image, ImageDraw, ImageFont
 
 dartsnut = Dartsnut()
 
-# image size
+# Image and Calendar dimensions
 WIDTH, HEIGHT = 128, 128
-# caldendar size
 CALENDAR_WIDTH, CALENDAR_HEIGHT = 128, 128
-# calendar data
-now = time.localtime()
-year, month = now.tm_year, now.tm_mon
-# week title
-weekdays = ['Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa', 'Su']
-cell_w = CALENDAR_WIDTH // 7 - 1
-cell_h = (CALENDAR_HEIGHT - 16) // 7
-left_margin = (CALENDAR_WIDTH - cell_w * 7) // 2
 
-# init image
+# Calendar layout calculations
+WEEKDAYS = ['Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa', 'Su']
+CELL_W = CALENDAR_WIDTH // 7 - 1
+CELL_H = (CALENDAR_HEIGHT - 16) // 7
+LEFT_MARGIN = (CALENDAR_WIDTH - CELL_W * 7) // 2
+HEADER_HEIGHT = 16
+
+# Colors
+BG_COLORS = ['#222244', '#223344', '#224455', '#225566', '#226677', '#227788', '#228899']
+WEEKDAY_COLORS = ['#FF6666', '#FFCC66', '#66FF66', '#66CCFF', '#6666FF', '#CC66FF', '#FF66CC']
+
+# Initialize Image and Font
 img = Image.new('RGB', (WIDTH, HEIGHT), 'black')
 draw = ImageDraw.Draw(img)
-# colors
-bg_colors = ['#222244', '#223344', '#224455', '#225566', '#226677', '#227788', '#228899']
-weekday_colors = ['#FF6666', '#FFCC66', '#66FF66', '#66CCFF', '#6666FF', '#CC66FF', '#FF66CC']
+font = ImageFont.load_default()
 
-def draw_the_calendar():
-    # clear the calendar area
-    draw.rectangle((0, 0, CALENDAR_WIDTH-1, CALENDAR_HEIGHT-1), fill='black')
-    # background stripe
+def draw_the_calendar(year, month, today_mday):
+    """Draws the calendar for the given year and month."""
+    # Clear the calendar area and draw background stripes
+    draw.rectangle((0, 0, CALENDAR_WIDTH, CALENDAR_HEIGHT), fill='black')
     for i in range(7):
-        draw.rectangle([left_margin + i*cell_w, 0, left_margin + (i+1)*cell_w, CALENDAR_HEIGHT-1], fill=bg_colors[i % len(bg_colors)])
-    # dividers
+        draw.rectangle([LEFT_MARGIN + i*CELL_W, 0, LEFT_MARGIN + (i+1)*CELL_W, CALENDAR_HEIGHT], fill=BG_COLORS[i])
+
+    # Draw grid lines
     for i in range(8):
-        draw.line([(left_margin + i*cell_w, 16), (left_margin + i*cell_w, CALENDAR_HEIGHT-1)], fill='gray')
+        draw.line([(LEFT_MARGIN + i*CELL_W, HEADER_HEIGHT), (LEFT_MARGIN + i*CELL_W, CALENDAR_HEIGHT)], fill='gray')
     for i in range(8):
-        draw.line([(left_margin, 16 + i*cell_h-1), (left_margin + 7*cell_w, 16 + i*cell_h-1)], fill='gray')
-    # fonts
-    font = ImageFont.load_default()
-    #get the time
-    now = time.localtime()
-    year, month = now.tm_year, now.tm_mon
-    # title
+        draw.line([(LEFT_MARGIN, HEADER_HEIGHT + i*CELL_H - 1), (LEFT_MARGIN + 7*CELL_W, HEADER_HEIGHT + i*CELL_H - 1)], fill='gray')
+
+    # Draw month/year title
     title = f"{year}-{month:02d}"
-    draw.text((CALENDAR_WIDTH//2 - len(title)*3, 2), title, fill='white', font=font)
+    title_width = draw.textlength(title, font=font)
+    draw.text(((CALENDAR_WIDTH - title_width) // 2, 2), title, fill='white', font=font)
 
-    for i, wd in enumerate(weekdays):
-        draw.text((left_margin + i*cell_w + 2, 16), wd, fill='white', font=font)
+    # Draw weekday headers
+    for i, wd in enumerate(WEEKDAYS):
+        draw.text((LEFT_MARGIN + i*CELL_W + 2, HEADER_HEIGHT), wd, fill='white', font=font)
 
-    # obtain month calendar
+    # Draw the days of the month
     cal = calendar.monthcalendar(year, month)
-    today = time.localtime()
     for row, week in enumerate(cal):
         for col, day in enumerate(week):
-            if day != 0:
-                x = left_margin + col * cell_w + 2
-                y = 16 + (row+1) * cell_h
-                color = weekday_colors[col % len(weekday_colors)]  # Use weekday color
+            if day == 0:
+                continue
+
+            x = LEFT_MARGIN + col * CELL_W + 2
+            y = HEADER_HEIGHT + (row + 1) * CELL_H
+            
+            if day == today_mday:
                 # Highlight today
-                if day == today.tm_mday and month == today.tm_mon and year == today.tm_year:
-                    # Draw a filled ellipse behind today's date
-                    ellipse_bbox = [x-2, y-2, x+14, y+12]
-                    draw.ellipse(ellipse_bbox, fill="yellow")
-                    text_fill = "black"
-                    # Draw today's date without outline
-                    draw.text((x, y), f"{day:2d}", fill=text_fill, font=font)
-                else:
-                    text_fill = color
-                    # Draw a black outline for better visibility
-                    outline_offsets = [(-1,0), (1,0), (0,-1), (0,1)]
-                    for ox, oy in outline_offsets:
-                        draw.text((x+ox, y+oy), f"{day:2d}", fill="black", font=font)
-                    draw.text((x, y), f"{day:2d}", fill=text_fill, font=font)
+                ellipse_bbox = [x - 2, y - 2, x + 14, y + 12]
+                draw.ellipse(ellipse_bbox, fill="yellow")
+                draw.text((x, y), f"{day:2d}", fill="black", font=font)
+            else:
+                # Draw other days with an outline for visibility
+                text_fill = WEEKDAY_COLORS[col]
+                outline_offsets = [(-1, 0), (1, 0), (0, -1), (0, 1)]
+                for ox, oy in outline_offsets:
+                    draw.text((x + ox, y + oy), f"{day:2d}", fill="black", font=font)
+                draw.text((x, y), f"{day:2d}", fill=text_fill, font=font)
 
-# display
+# --- Main Loop ---
 try:
-    while True:
-        if now.tm_mday != year or now.tm_mon != month or now.tm_year != year:
-            draw_the_calendar()
+    while dartsnut.running:
+        now = time.localtime()
+        draw_the_calendar(now.tm_year, now.tm_mon, now.tm_mday)
         dartsnut.update_frame_buffer(img)
-        time.sleep(0.5)
-
+        time.sleep(60)
 except KeyboardInterrupt:
-    print("simple_demo exiting...")
+    pass
+
+print("simple_calendar_128_128 exiting...")

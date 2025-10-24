@@ -1,8 +1,8 @@
 {
-    "id": "",
+    "id": "simple_calendar_128_160",
     "type": "widget",
     "name": "Simple Calendar",
-    "author": "PixelBoard Team",
+    "author": "Dartsnut Team",
     "version": "1.0.0",
     "description": "A simple calendar widget",
     "size": [128,160],

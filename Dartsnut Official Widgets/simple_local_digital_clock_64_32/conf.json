@@ -1,8 +1,8 @@
 {
-    "id": "",
+    "id": "simple_local_digital_clock_64_32",
     "type": "widget",
     "name": "Simple Local Digital Clock",
-    "author": "PixelBoard Team",
+    "author": "Dartsnut Team",
     "version": "1.0.0",
     "description": "A simple local digital clock widget",
     "size": [64,32],

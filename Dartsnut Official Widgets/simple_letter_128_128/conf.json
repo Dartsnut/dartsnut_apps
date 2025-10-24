@@ -1,17 +1,17 @@
 {
-    "id": "",
+    "id": "simple_letter_128_128",
     "type": "widget",
     "name": "Simple Letter",
-    "author": "PixelBoard Team",
+    "author": "Dartsnut Team",
     "version": "1.0.0",
-    "description": "A simple letter widget, user",
+    "description": "A simple letter widget, user can input any text to display.",
     "size": [128,128],
     "fields": [
         {
             "id": "main_text", 
             "name": "Message Text",
             "type": "text",
-            "desc": "The text to be displayed in the upper area of the screen. Supports multiple lines. Automatic scrolling if too long.",
+            "desc": "The text to be displayed on the screen. Supports multiple lines. Automatic scrolling if too long.",
             "default": ""
         }
     ],
