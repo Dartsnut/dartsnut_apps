@@ -54,6 +54,7 @@ Each field in the `fields` array should include the following basic properties:
 - **id**: Unique identifier for the parameter. Must be unique across all fields.
 - **name**: Display name shown in the Dartsnut app.
 - **type**: Data type of the parameter (e.g., `text`, `dropdown`).
+- **required**: A boolean indicating if the parameter is mandatory. Defaults to `false`. It is good practice to handle cases where a user might not provide a value, even for required fields, to prevent exceptions in your widget.
 - **desc**: Short description displayed in the Dartsnut app.
 - **default**: Default value shown to users in the Dartsnut app.
 
